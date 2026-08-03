@@ -19,7 +19,33 @@ async function main() {
       email: "presidente@choralesaintpatrick.gn",
       motDePasse: motDePasseHash,
       pupitre: "SOPRANO",
-      roles: { create: [{ role: "PRESIDENT" }, { role: "CHORISTE" }] },
+      roles: {
+        create: [{ role: "ADMIN" }, { role: "PRESIDENT" }, { role: "CHORISTE" }],
+      },
+    },
+  });
+
+  await prisma.membre.upsert({
+    where: { email: "admin2@choralesaintpatrick.gn" },
+    update: {},
+    create: {
+      nom: "Sylla",
+      prenom: "Fatoumata",
+      email: "admin2@choralesaintpatrick.gn",
+      motDePasse: motDePasseHash,
+      roles: { create: [{ role: "ADMIN" }] },
+    },
+  });
+
+  await prisma.membre.upsert({
+    where: { email: "admin3@choralesaintpatrick.gn" },
+    update: {},
+    create: {
+      nom: "Keita",
+      prenom: "Ibrahima",
+      email: "admin3@choralesaintpatrick.gn",
+      motDePasse: motDePasseHash,
+      roles: { create: [{ role: "ADMIN" }] },
     },
   });
 

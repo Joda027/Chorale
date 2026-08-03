@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/auth.config";
+import { estMembreDuBureau } from "@/lib/rbac";
 
 const { auth } = NextAuth(authConfig);
 
@@ -21,17 +22,7 @@ export default auth((req) => {
 
   if (pathname.startsWith(PREFIXE_BUREAU)) {
     const roles = req.auth?.user?.roles ?? [];
-    const estBureau = roles.some((role) =>
-      [
-        "PRESIDENT",
-        "SECRETAIRE_GENERAL",
-        "TRESORIER",
-        "CHARGE_ORGANISATION",
-        "CHARGE_SPIRITUEL",
-        "CHARGE_DISCIPLINE",
-      ].includes(role),
-    );
-    if (!estBureau) {
+    if (!estMembreDuBureau(roles)) {
       return NextResponse.redirect(new URL("/", req.nextUrl.origin));
     }
   }

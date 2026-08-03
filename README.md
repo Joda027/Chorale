@@ -5,7 +5,7 @@ Application web de gestion pour la chorale : bureau, maîtres de chœur, chorist
 ## Stack technique
 
 - [Next.js 15](https://nextjs.org) (App Router) + TypeScript
-- Tailwind CSS
+- CSS classique séparé (styles globaux + modules CSS par composant, sans framework CSS)
 - Prisma ORM + SQLite (dev) — migrable vers PostgreSQL en production
 - NextAuth.js (authentification + rôles)
 
@@ -24,3 +24,4 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 - **Choriste** : membre du pupitre, accès au répertoire et au planning
 - **Maître de chœur** : gère le répertoire et les prestations
 - **Membre du bureau** : président·e, secrétaire général·e, trésorier·ère, chargé·e d'organisation, chargé·e spirituel·le, chargé·e de discipline — accès aux archives, finances, discipline et plan d'action selon la fonction
+- **Administrateur·rice** : 2 à 3 personnes avec contrôle total sur le site (accès à l'espace bureau et à toutes les fonctionnalités, indépendamment des autres rôles)

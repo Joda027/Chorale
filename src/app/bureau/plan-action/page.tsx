@@ -7,11 +7,11 @@ const LABELS_STATUT: Record<string, string> = {
   ANNULE: "Annulé",
 };
 
-const COULEURS_STATUT: Record<string, string> = {
-  A_FAIRE: "bg-gray-100 text-gray-700",
-  EN_COURS: "bg-amber-100 text-amber-800",
-  TERMINE: "bg-green-100 text-green-800",
-  ANNULE: "bg-red-100 text-red-800",
+const CLASSES_STATUT: Record<string, string> = {
+  A_FAIRE: "badge-attente",
+  EN_COURS: "badge-en-cours",
+  TERMINE: "badge-termine",
+  ANNULE: "badge-annule",
 };
 
 export default async function PlanActionPage() {
@@ -21,31 +21,24 @@ export default async function PlanActionPage() {
   });
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <h1 className="text-2xl font-semibold mb-6">Plan d&apos;action</h1>
+    <main className="page">
+      <h1 className="page-title">Plan d&apos;action</h1>
       {actions.length === 0 ? (
-        <p className="text-gray-500">Aucune action planifiée.</p>
+        <p className="etat-vide">Aucune action planifiée.</p>
       ) : (
-        <ul className="space-y-3">
+        <ul className="liste">
           {actions.map((action) => (
-            <li
-              key={action.id}
-              className="rounded-lg border border-gray-200 p-4"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="font-medium">{action.titre}</span>
-                <span
-                  className={`text-xs rounded-full px-2 py-1 ${COULEURS_STATUT[action.statut]}`}
-                >
+            <li key={action.id} className="carte">
+              <div className="carte-ligne">
+                <span className="carte-titre">{action.titre}</span>
+                <span className={`badge ${CLASSES_STATUT[action.statut]}`}>
                   {LABELS_STATUT[action.statut]}
                 </span>
               </div>
               {action.description && (
-                <p className="text-sm text-gray-600 mt-1">
-                  {action.description}
-                </p>
+                <p className="carte-info">{action.description}</p>
               )}
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="carte-description">
                 {action.responsable
                   ? `Responsable : ${action.responsable.prenom} ${action.responsable.nom}`
                   : "Responsable non assigné"}

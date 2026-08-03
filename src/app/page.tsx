@@ -14,54 +14,46 @@ export default async function Accueil() {
     ]);
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10 space-y-10">
-      <section>
-        <h1 className="text-3xl font-semibold">Chorale Saint Patrick</h1>
-        <p className="text-gray-600 mt-1">
+    <main className="page">
+      <section className="section">
+        <h1 className="accueil-titre">Chorale Saint Patrick</h1>
+        <p className="accueil-sous-titre">
           Paroisse Saint-Cyprien — Archidiocèse de Conakry
         </p>
       </section>
 
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="rounded-lg border border-gray-200 p-4">
-          <p className="text-sm text-gray-500">Choristes actifs</p>
-          <p className="text-2xl font-semibold">{membresCount}</p>
+      <section className="section grille-stats">
+        <div className="carte">
+          <p className="stat-libelle">Choristes actifs</p>
+          <p className="stat-valeur">{membresCount}</p>
         </div>
-        <div className="rounded-lg border border-gray-200 p-4">
-          <p className="text-sm text-gray-500">Chants au répertoire</p>
-          <p className="text-2xl font-semibold">{chantsCount}</p>
+        <div className="carte">
+          <p className="stat-libelle">Chants au répertoire</p>
+          <p className="stat-valeur">{chantsCount}</p>
         </div>
-        <div className="rounded-lg border border-gray-200 p-4">
-          <p className="text-sm text-gray-500">Prestations à venir</p>
-          <p className="text-2xl font-semibold">
-            {prochainesPrestations.length}
-          </p>
+        <div className="carte">
+          <p className="stat-libelle">Prestations à venir</p>
+          <p className="stat-valeur">{prochainesPrestations.length}</p>
         </div>
       </section>
 
-      <section>
-        <h2 className="text-xl font-semibold mb-3">Prochaines prestations</h2>
+      <section className="section">
+        <h2 className="section-title">Prochaines prestations</h2>
         {prochainesPrestations.length === 0 ? (
-          <p className="text-gray-500">Aucune prestation programmée.</p>
+          <p className="etat-vide">Aucune prestation programmée.</p>
         ) : (
-          <ul className="space-y-2">
+          <ul className="liste-serree">
             {prochainesPrestations.map((prestation) => (
-              <li
-                key={prestation.id}
-                className="rounded-lg border border-gray-200 p-4 flex justify-between"
-              >
-                <span className="font-medium">{prestation.titre}</span>
-                <span className="text-gray-500">
+              <li key={prestation.id} className="carte carte-ligne">
+                <span className="carte-titre">{prestation.titre}</span>
+                <span className="texte-attenue">
                   {prestation.date.toLocaleDateString("fr-FR")}
                 </span>
               </li>
             ))}
           </ul>
         )}
-        <Link
-          href="/prestations"
-          className="inline-block mt-3 text-sky-700 hover:underline"
-        >
+        <Link href="/prestations" className="lien-suite">
           Voir toutes les prestations →
         </Link>
       </section>

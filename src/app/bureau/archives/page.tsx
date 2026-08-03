@@ -14,30 +14,24 @@ export default async function ArchivesPage() {
   });
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <h1 className="text-2xl font-semibold mb-6">Archives du bureau</h1>
+    <main className="page">
+      <h1 className="page-title">Archives du bureau</h1>
       {documents.length === 0 ? (
-        <p className="text-gray-500">Aucun document archivé.</p>
+        <p className="etat-vide">Aucun document archivé.</p>
       ) : (
-        <ul className="space-y-3">
+        <ul className="liste">
           {documents.map((doc) => (
-            <li
-              key={doc.id}
-              className="rounded-lg border border-gray-200 p-4 flex flex-wrap items-center justify-between gap-2"
-            >
+            <li key={doc.id} className="carte carte-ligne">
               <div>
-                <a
-                  href={doc.fichierUrl}
-                  className="font-medium text-sky-700 hover:underline"
-                >
+                <a href={doc.fichierUrl} className="carte-titre lien-texte">
                   {doc.titre}
                 </a>
-                <p className="text-sm text-gray-500">
+                <p className="carte-info">
                   {LABELS_TYPE[doc.type]} — déposé par {doc.uploadePar.prenom}{" "}
                   {doc.uploadePar.nom}
                 </p>
               </div>
-              <span className="text-sm text-gray-500">
+              <span className="carte-info">
                 {doc.dateDocument.toLocaleDateString("fr-FR")}
               </span>
             </li>

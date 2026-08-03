@@ -14,37 +14,29 @@ export default async function RepertoirePage() {
   });
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <h1 className="text-2xl font-semibold mb-6">Répertoire de chants</h1>
+    <main className="page">
+      <h1 className="page-title">Répertoire de chants</h1>
       {chants.length === 0 ? (
-        <p className="text-gray-500">Aucun chant enregistré pour le moment.</p>
+        <p className="etat-vide">Aucun chant enregistré pour le moment.</p>
       ) : (
-        <ul className="space-y-3">
+        <ul className="liste">
           {chants.map((chant) => (
-            <li
-              key={chant.id}
-              className="rounded-lg border border-gray-200 p-4"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="font-medium">{chant.titre}</span>
+            <li key={chant.id} className="carte">
+              <div className="carte-ligne">
+                <span className="carte-titre">{chant.titre}</span>
                 {chant.pupitreCible && (
-                  <span className="text-xs rounded-full bg-sky-100 text-sky-800 px-2 py-1">
+                  <span className="badge badge-bleu">
                     {LABELS_PUPITRE[chant.pupitreCible]}
                   </span>
                 )}
               </div>
               {chant.compositeur && (
-                <p className="text-sm text-gray-500 mt-1">
-                  {chant.compositeur}
-                </p>
+                <p className="carte-info">{chant.compositeur}</p>
               )}
               {chant.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-2">
+                <div className="etiquette-groupe">
                   {chant.tags.map((tag) => (
-                    <span
-                      key={tag.id}
-                      className="text-xs rounded bg-gray-100 text-gray-600 px-2 py-0.5"
-                    >
+                    <span key={tag.id} className="etiquette">
                       {tag.nom}
                     </span>
                   ))}
