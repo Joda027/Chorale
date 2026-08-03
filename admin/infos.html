@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Administration — Informations publiques</title>
+  <link rel="icon" href="/public/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="mise-en-page">
+    <aside id="entete" class="barre-laterale"></aside>
+
+    <main class="page">
+      <h1 class="page-title">Informations publiques</h1>
+      <p class="etat-vide" style="margin-bottom: 1.5rem;">
+        Ce texte et ces coordonnées sont affichés sur la page visiteurs, visible sans connexion.
+      </p>
+
+      <form id="formulaire-infos" class="formulaire formulaire-large">
+        <div>
+          <label for="texte-presentation" class="champ">Texte de présentation</label>
+          <textarea id="texte-presentation" rows="6" class="saisie"></textarea>
+        </div>
+        <div>
+          <label for="contact-email" class="champ">Email de contact</label>
+          <input id="contact-email" type="email" class="saisie" />
+        </div>
+        <div>
+          <label for="contact-telephone" class="champ">Téléphone de contact</label>
+          <input id="contact-telephone" type="text" class="saisie" />
+        </div>
+        <div>
+          <label for="adresse" class="champ">Adresse</label>
+          <input id="adresse" type="text" class="saisie" />
+        </div>
+        <p id="message-erreur" class="erreur" hidden></p>
+        <p id="message-info" class="info" hidden></p>
+        <button type="submit" id="bouton-enregistrer" class="bouton">Enregistrer</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/admin-infos.js"></script>
+</body>
+</html>
