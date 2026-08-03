@@ -11,24 +11,33 @@ Site web de gestion pour la chorale : bureau, maîtres de chœur, choristes, ré
 ## Structure des fichiers
 
 ```
-index.html              Accueil
+index.html              Accueil (avec carrousel photos)
 connexion.html          Connexion
 inscription.html        Création de compte
-repertoire.html         Répertoire de chants
+repertoire.html         Répertoire : Chants / Partitions / Musiques / Photos (onglets)
 choristes.html          Liste des choristes par pupitre
 activites.html          Activités
 prestations.html        Prestations
-bureau/index.html       Espace bureau (protégé)
-bureau/archives.html    Archives du bureau (protégé)
-bureau/plan-action.html Plan d'action (protégé)
+bureau/index.html       Espace bureau (protégé : président·e, secrétaire...)
+bureau/archives.html    Archives du bureau
+bureau/plan-action.html Plan d'action
 
-css/style.css           Tous les styles du site
+admin/index.html        Espace administration (protégé : administrateur·rice uniquement)
+admin/chants.html       Ajouter / modifier / supprimer les chants
+admin/partitions.html   Ajouter / supprimer des partitions (avec protection par code)
+admin/musiques.html     Ajouter / supprimer des musiques (audio)
+admin/photos.html       Ajouter / supprimer les photos du carrousel
+
+css/style.css           Tous les styles du site (menu latéral compris)
 js/config.js            Clés de connexion Supabase (à renseigner)
 js/supabase-client.js    Initialisation du client Supabase
-js/layout.js             En-tête commun, gestion des rôles et des accès
-js/page-*.js             Logique propre à chaque page
+js/layout.js             Menu latéral commun, gestion des rôles et des accès
+js/page-*.js             Logique des pages publiques
+js/admin-*.js            Logique des pages d'administration
 
-supabase/schema.sql      Structure de la base de données (tables + sécurité)
+supabase/schema.sql              Structure de base (tables + sécurité)
+supabase/migration_002_repertoire.sql  Chants par partie de messe, partitions,
+                                        musiques, photos, stockage des fichiers
 supabase/seed.sql        Données de démonstration (répertoire, activités...)
 ```
 
@@ -38,7 +47,9 @@ supabase/seed.sql        Données de démonstration (répertoire, activités...)
 
 1. Dashboard Supabase → **SQL Editor** → **New query**
 2. Collez le contenu de `supabase/schema.sql`, cliquez **Run**
-3. (Optionnel) Faites de même avec `supabase/seed.sql` pour avoir des chants/activités de démonstration
+3. Nouvelle requête → collez le contenu de `supabase/migration_002_repertoire.sql`, **Run**
+   (crée aussi automatiquement les espaces de stockage des fichiers : partitions, musiques, photos)
+4. (Optionnel) Faites de même avec `supabase/seed.sql` pour avoir des chants/activités de démonstration
 
 ### 2. Renseigner les clés Supabase
 
@@ -89,4 +100,17 @@ puis ouvrez l'adresse affichée (ex. http://localhost:3000).
 - **Membre du bureau** : président·e, secrétaire général·e, trésorier·ère, chargé·e d'organisation, chargé·e spirituel·le, chargé·e de discipline — accès aux archives et au plan d'action
 - **Administrateur·rice** : 2 à 3 personnes avec contrôle total sur le site, quel que soit leur autre rôle
 
-Les rôles se gèrent pour l'instant directement dans Supabase (table `roles_membres`) — il n'y a pas encore d'interface d'administration dans le site.
+Les rôles se gèrent pour l'instant directement dans Supabase (table `roles_membres`) — il n'y a pas d'interface pour ça dans le site.
+
+## Répertoire et fichiers
+
+Le répertoire (page `repertoire.html`) est organisé en 4 onglets :
+
+- **Chants** : classés par partie de la messe (Entrée, Kyrie, Gloire, Psaume, Acclamation, Offertoire, Sanctus, Agneau de Dieu, Communion, Sortie)
+- **Partitions** : fichiers téléchargeables (PDF, image...). Une partition peut être **protégée par un code** : l'administrateur·rice l'active dans `admin/partitions.html`, un code à 6 chiffres est généré automatiquement et visible uniquement par les admins. L'administrateur·rice communique ce code lui-même (téléphone, message...) à la personne autorisée, qui le saisit sur le site pour débloquer le téléchargement.
+- **Musiques** : fichiers audio, écoutables et téléchargeables
+- **Photos** : galerie des photos de la chorale (les mêmes défilent en carrousel sur l'accueil)
+
+Toute la gestion (ajout, modification, suppression de chants/partitions/musiques/photos) se fait dans l'espace **Administration**, réservé aux administrateur·rice·s.
+
+**Limite à connaître** : le code d'accès empêche un visiteur normal de voir le lien de téléchargement d'une partition protégée, mais ce n'est pas un chiffrement du fichier lui-même — une fois le lien obtenu (après avoir entré le bon code), rien n'empêche techniquement de le repartager. C'est un frein raisonnable pour un usage entre membres de confiance, pas une protection absolue.

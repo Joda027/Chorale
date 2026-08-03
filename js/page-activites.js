@@ -6,6 +6,9 @@ const LABELS_TYPE = {
 };
 
 async function chargerActivites() {
+  const session = await exigerConnexion();
+  if (!session) return;
+
   const liste = document.getElementById("liste-activites");
 
   const { data: activites, error } = await supabaseClient

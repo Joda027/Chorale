@@ -1,4 +1,45 @@
+async function chargerCarrousel() {
+  const conteneur = document.getElementById("carrousel-photos");
+  const { data: photos } = await supabaseClient
+    .from("photos")
+    .select("id, url, legende")
+    .order("ordre", { ascending: true });
+
+  if (!photos || photos.length === 0) {
+    conteneur.remove();
+    return;
+  }
+
+  conteneur.innerHTML = photos
+    .map(
+      (p, i) => `
+        <img
+          src="${p.url}"
+          alt="${p.legende ?? "Photo de la chorale"}"
+          class="carrousel-image${i === 0 ? " actif" : ""}"
+          data-index="${i}"
+        />`,
+    )
+    .join("") + `<div class="carrousel-legende" id="carrousel-legende">${photos[0].legende ?? ""}</div>`;
+
+  const images = conteneur.querySelectorAll(".carrousel-image");
+  const legende = document.getElementById("carrousel-legende");
+  let indexActuel = 0;
+
+  setInterval(() => {
+    images[indexActuel].classList.remove("actif");
+    indexActuel = (indexActuel + 1) % images.length;
+    images[indexActuel].classList.add("actif");
+    legende.textContent = photos[indexActuel].legende ?? "";
+  }, 4000);
+}
+
 async function chargerAccueil() {
+  const session = await exigerConnexion();
+  if (!session) return;
+
+  chargerCarrousel();
+
   const maintenant = new Date().toISOString();
 
   const [{ count: nbChoristes }, { count: nbChants }, { count: nbPrestations }, { data: prochaines }] =

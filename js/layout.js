@@ -62,27 +62,28 @@ async function initEntete() {
   if (estMembreDuBureau(roles)) {
     liens.push({ href: "/bureau/index.html", label: "Bureau" });
   }
+  if (estAdmin(roles)) {
+    liens.push({ href: "/admin/index.html", label: "Administration" });
+  }
 
   const navHtml = liens
     .map((l) => `<a href="${l.href}">${l.label}</a>`)
     .join("");
 
   const compteHtml = session
-    ? `<div class="entete-compte-connecte">
-         <span class="entete-nom">${nomAffiche}</span>
+    ? `<div class="barre-laterale-compte-connecte">
+         <span class="barre-laterale-nom">${nomAffiche}</span>
          <button id="bouton-deconnexion" class="lien-deconnexion">Se déconnecter</button>
        </div>`
     : `<a href="/connexion.html" class="lien-deconnexion">Se connecter</a>`;
 
   conteneur.innerHTML = `
-    <div class="entete-conteneur">
-      <a href="/index.html" class="entete-marque">
-        <img src="/public/logo.png" alt="Logo de la Chorale Saint Patrick" class="entete-logo" />
-        Chorale Saint Patrick
-      </a>
-      <nav class="entete-nav">${navHtml}</nav>
-      <div class="entete-compte">${compteHtml}</div>
-    </div>
+    <a href="/index.html" class="barre-laterale-marque">
+      <img src="/public/logo.png" alt="Logo de la Chorale Saint Patrick" class="barre-laterale-logo" />
+      <span class="barre-laterale-titre">Chorale Saint Patrick</span>
+    </a>
+    <nav class="barre-laterale-nav">${navHtml}</nav>
+    <div class="barre-laterale-compte">${compteHtml}</div>
   `;
 
   const boutonDeconnexion = document.getElementById("bouton-deconnexion");
@@ -113,6 +114,18 @@ async function exigerBureau() {
 
   const roles = await chargerRolesUtilisateur(session.user.id);
   if (!estMembreDuBureau(roles)) {
+    window.location.href = "/index.html";
+    return null;
+  }
+  return { session, roles };
+}
+
+async function exigerAdmin() {
+  const session = await exigerConnexion();
+  if (!session) return null;
+
+  const roles = await chargerRolesUtilisateur(session.user.id);
+  if (!estAdmin(roles)) {
     window.location.href = "/index.html";
     return null;
   }

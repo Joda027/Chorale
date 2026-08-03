@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Administration — Chorale Saint Patrick</title>
+  <link rel="icon" href="/public/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="mise-en-page">
+    <aside id="entete" class="barre-laterale"></aside>
+
+    <main class="page">
+      <h1 class="page-title">Administration</h1>
+      <div class="grille-liens">
+        <a href="/admin/chants.html" class="carte carte-lien">
+          <p class="carte-titre">Chants</p>
+          <p class="carte-info">Ajouter, modifier, supprimer les chants du répertoire</p>
+        </a>
+        <a href="/admin/partitions.html" class="carte carte-lien">
+          <p class="carte-titre">Partitions</p>
+          <p class="carte-info">Fichiers de partitions, avec ou sans code de protection</p>
+        </a>
+        <a href="/admin/musiques.html" class="carte carte-lien">
+          <p class="carte-titre">Musiques</p>
+          <p class="carte-info">Fichiers audio du répertoire</p>
+        </a>
+        <a href="/admin/photos.html" class="carte carte-lien">
+          <p class="carte-titre">Photos</p>
+          <p class="carte-info">Photos affichées en carrousel sur l'accueil</p>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/layout.js"></script>
+  <script>
+    exigerAdmin();
+  </script>
+</body>
+</html>
