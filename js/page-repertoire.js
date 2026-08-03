@@ -101,8 +101,7 @@ async function chargerPartitions() {
 
   const [{ data: partitions, error }, { data: chants }] = await Promise.all([
     supabaseClient
-      .from("partitions_publiques")
-      .select("id, chant_id, titre, protegee, chemin_fichier")
+      .rpc("obtenir_partitions_publiques")
       .order("titre", { ascending: true }),
     supabaseClient.from("chants").select("id, titre"),
   ]);
