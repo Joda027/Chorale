@@ -8,6 +8,7 @@ const LABELS_PUPITRE: Record<string, string> = {
 };
 
 const LABELS_ROLE: Record<string, string> = {
+  ADMIN: "Administrateur·rice",
   CHORISTE: "Choriste",
   MAITRE_CHOEUR: "Maître de chœur",
   PRESIDENT: "Président·e",
@@ -35,28 +36,25 @@ export default async function ChoristesPage() {
   );
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <h1 className="text-2xl font-semibold mb-6">Choristes</h1>
-      <div className="space-y-8">
+    <main className="page">
+      <h1 className="page-title">Choristes</h1>
+      <div className="liste-groupes">
         {Object.entries(parPupitre).map(([pupitre, membresGroupe]) => (
           <section key={pupitre}>
-            <h2 className="text-lg font-semibold text-sky-800 mb-3">
+            <h2 className="groupe-pupitre-titre">
               {LABELS_PUPITRE[pupitre] ?? "Sans pupitre assigné"}
             </h2>
-            <ul className="space-y-2">
+            <ul className="liste-serree">
               {membresGroupe.map((membre) => (
-                <li
-                  key={membre.id}
-                  className="rounded-lg border border-gray-200 p-4 flex flex-wrap items-center justify-between gap-2"
-                >
+                <li key={membre.id} className="carte carte-ligne">
                   <span>
                     {membre.prenom} {membre.nom}
                   </span>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="badge-groupe">
                     {membre.roles.map((r) => (
                       <span
                         key={r.id}
-                        className="text-xs rounded-full bg-gray-100 text-gray-600 px-2 py-1"
+                        className={`badge ${r.role === "ADMIN" ? "badge-admin" : "badge-gris"}`}
                       >
                         {LABELS_ROLE[r.role]}
                       </span>
@@ -68,7 +66,7 @@ export default async function ChoristesPage() {
           </section>
         ))}
         {membres.length === 0 && (
-          <p className="text-gray-500">Aucun choriste enregistré.</p>
+          <p className="etat-vide">Aucun choriste enregistré.</p>
         )}
       </div>
     </main>

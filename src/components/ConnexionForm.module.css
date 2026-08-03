@@ -1,0 +1,45 @@
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 24rem;
+}
+
+.champ {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.saisie {
+  width: 100%;
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 0.75rem;
+}
+
+.erreur {
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+.bouton {
+  width: 100%;
+  border: none;
+  border-radius: 0.25rem;
+  background: var(--couleur-primaire);
+  color: #ffffff;
+  padding: 0.5rem 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.bouton:hover {
+  background: var(--couleur-primaire-fonce);
+}
+
+.bouton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

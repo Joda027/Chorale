@@ -9,10 +9,14 @@ export const ROLES_BUREAU: Role[] = [
   "CHARGE_DISCIPLINE",
 ];
 
+export function estAdmin(roles: Role[]): boolean {
+  return roles.includes("ADMIN");
+}
+
 export function estMembreDuBureau(roles: Role[]): boolean {
-  return roles.some((role) => ROLES_BUREAU.includes(role));
+  return estAdmin(roles) || roles.some((role) => ROLES_BUREAU.includes(role));
 }
 
 export function aLeRole(roles: Role[], ...rolesAutorises: Role[]): boolean {
-  return roles.some((role) => rolesAutorises.includes(role));
+  return estAdmin(roles) || roles.some((role) => rolesAutorises.includes(role));
 }

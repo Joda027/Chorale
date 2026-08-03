@@ -3,6 +3,7 @@ import Image from "next/image";
 import { auth } from "@/auth";
 import { estMembreDuBureau } from "@/lib/rbac";
 import { SignOutButton } from "@/components/SignOutButton";
+import styles from "./Header.module.css";
 
 export async function Header() {
   const session = await auth();
@@ -21,33 +22,35 @@ export async function Header() {
   }
 
   return (
-    <header className="bg-sky-700 text-white">
-      <div className="mx-auto max-w-5xl px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-        <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
+    <header className={styles.entete}>
+      <div className={styles.conteneur}>
+        <Link href="/" className={styles.marque}>
           <Image
             src="/logo.png"
             alt="Logo de la Chorale Saint Patrick"
             width={36}
             height={36}
-            className="h-9 w-9 rounded-full"
+            className={styles.logo}
           />
           Chorale Saint Patrick
         </Link>
-        <nav className="flex flex-wrap gap-4 text-sm">
+        <nav className={styles.nav}>
           {liens.map((lien) => (
-            <Link key={lien.href} href={lien.href} className="hover:underline">
+            <Link key={lien.href} href={lien.href}>
               {lien.label}
             </Link>
           ))}
         </nav>
-        <div className="text-sm">
+        <div className={styles.compte}>
           {session?.user ? (
-            <div className="flex items-center gap-3">
-              <span className="text-white/90">{session.user.name}</span>
+            <div className={styles.compteConnecte}>
+              <span className={styles.nomUtilisateur}>
+                {session.user.name}
+              </span>
               <SignOutButton />
             </div>
           ) : (
-            <Link href="/connexion" className="hover:underline">
+            <Link href="/connexion" className={styles.lienConnexion}>
               Se connecter
             </Link>
           )}

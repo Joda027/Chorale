@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import styles from "./ConnexionForm.module.css";
 
 export function ConnexionForm() {
   const router = useRouter();
@@ -33,9 +34,9 @@ export function ConnexionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-sm">
+    <form onSubmit={handleSubmit} className={styles.formulaire}>
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-1">
+        <label htmlFor="email" className={styles.champ}>
           Email
         </label>
         <input
@@ -44,11 +45,11 @@ export function ConnexionForm() {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded border border-gray-300 px-3 py-2"
+          className={styles.saisie}
         />
       </div>
       <div>
-        <label htmlFor="motDePasse" className="block text-sm font-medium mb-1">
+        <label htmlFor="motDePasse" className={styles.champ}>
           Mot de passe
         </label>
         <input
@@ -57,15 +58,11 @@ export function ConnexionForm() {
           required
           value={motDePasse}
           onChange={(e) => setMotDePasse(e.target.value)}
-          className="w-full rounded border border-gray-300 px-3 py-2"
+          className={styles.saisie}
         />
       </div>
-      {erreur && <p className="text-sm text-red-600">{erreur}</p>}
-      <button
-        type="submit"
-        disabled={isPending}
-        className="w-full rounded bg-sky-700 text-white py-2 font-medium hover:bg-sky-800 disabled:opacity-60"
-      >
+      {erreur && <p className={styles.erreur}>{erreur}</p>}
+      <button type="submit" disabled={isPending} className={styles.bouton}>
         {isPending ? "Connexion..." : "Se connecter"}
       </button>
     </form>
