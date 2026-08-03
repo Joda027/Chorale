@@ -5,5 +5,5 @@
 //   - "anon public" (clé)  -> SUPABASE_ANON_KEY
 // Ces valeurs sont publiques par conception (utilisées côté navigateur),
 // ce n'est pas un secret à protéger comme un mot de passe.
-const SUPABASE_URL = "https://VOTRE-PROJET.supabase.co";
-const SUPABASE_ANON_KEY = "VOTRE_CLE_ANON_PUBLIC";
+const SUPABASE_URL = "https://zisrzrhzjxfloxxpdibu.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_taheB0tmiPtTQ2w9aq-iUw_5NWhwck5";
