@@ -89,8 +89,7 @@ async function chargerPartitions() {
   const liste = document.getElementById("liste-partitions");
 
   const { data: partitions, error } = await supabaseClient
-    .from("partitions_publiques")
-    .select("id, titre, protegee, chemin_fichier")
+    .rpc("obtenir_partitions_publiques")
     .order("titre", { ascending: true });
 
   if (error) {
