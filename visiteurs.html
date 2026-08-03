@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Espace visiteurs — Chorale Saint Patrick</title>
+  <meta
+    name="description"
+    content="Photos, musiques, partitions et informations sur la Chorale Saint Patrick, sans besoin de compte."
+  />
+  <link rel="icon" href="/public/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="mise-en-page">
+    <aside id="entete" class="barre-laterale"></aside>
+
+    <main class="page">
+      <h1 class="page-title">Espace visiteurs</h1>
+      <p class="etat-vide" style="margin-bottom: 2rem;">
+        Cette page est accessible sans créer de compte. Pour accéder au répertoire complet, aux
+        activités et à l'espace membres, <a href="/connexion.html" class="lien-texte">connectez-vous</a>
+        ou <a href="/inscription.html" class="lien-texte">créez un compte</a>.
+      </p>
+
+      <section class="section">
+        <h2 class="section-title">Présentation</h2>
+        <div id="bloc-presentation" class="carte"></div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Photos</h2>
+        <div class="grille-photos-admin" id="galerie-photos"></div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Musiques</h2>
+        <ul class="liste" id="liste-musiques"></ul>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Partitions</h2>
+        <ul class="liste" id="liste-partitions"></ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/page-visiteurs.js"></script>
+</body>
+</html>

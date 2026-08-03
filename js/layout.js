@@ -31,6 +31,7 @@ async function chargerRolesUtilisateur(userId) {
 
 const LIENS_NAV = [
   { href: "/index.html", label: "Accueil" },
+  { href: "/visiteurs.html", label: "Visiteurs" },
   { href: "/repertoire.html", label: "Répertoire" },
   { href: "/choristes.html", label: "Choristes" },
   { href: "/activites.html", label: "Activités" },

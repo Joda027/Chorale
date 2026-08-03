@@ -11,10 +11,11 @@ Site web de gestion pour la chorale : bureau, maîtres de chœur, choristes, ré
 ## Structure des fichiers
 
 ```
-index.html              Accueil (avec carrousel photos)
+index.html              Accueil (avec carrousel photos, membres connectés)
+visiteurs.html          Espace visiteurs : photos, musiques, partitions, infos (sans connexion)
 connexion.html          Connexion
 inscription.html        Création de compte
-repertoire.html         Répertoire : Chants / Partitions / Musiques / Photos (onglets)
+repertoire.html         Répertoire : Chants / Partitions / Musiques / Photos (onglets, membres)
 choristes.html          Liste des choristes par pupitre
 activites.html          Activités
 prestations.html        Prestations
@@ -27,6 +28,7 @@ admin/chants.html       Ajouter / modifier / supprimer les chants
 admin/partitions.html   Ajouter / supprimer des partitions (avec protection par code)
 admin/musiques.html     Ajouter / supprimer des musiques (audio)
 admin/photos.html       Ajouter / supprimer les photos du carrousel
+admin/infos.html        Modifier le texte et le contact de la page visiteurs
 
 css/style.css           Tous les styles du site (menu latéral compris)
 js/config.js            Clés de connexion Supabase (à renseigner)
@@ -38,6 +40,8 @@ js/admin-*.js            Logique des pages d'administration
 supabase/schema.sql              Structure de base (tables + sécurité)
 supabase/migration_002_repertoire.sql  Chants par partie de messe, partitions,
                                         musiques, photos, stockage des fichiers
+supabase/migration_003_public.sql      Page visiteurs : infos publiques, accès
+                                        sans connexion aux photos/musiques/partitions
 supabase/seed.sql        Données de démonstration (répertoire, activités...)
 ```
 
@@ -49,7 +53,9 @@ supabase/seed.sql        Données de démonstration (répertoire, activités...)
 2. Collez le contenu de `supabase/schema.sql`, cliquez **Run**
 3. Nouvelle requête → collez le contenu de `supabase/migration_002_repertoire.sql`, **Run**
    (crée aussi automatiquement les espaces de stockage des fichiers : partitions, musiques, photos)
-4. (Optionnel) Faites de même avec `supabase/seed.sql` pour avoir des chants/activités de démonstration
+4. Nouvelle requête → collez le contenu de `supabase/migration_003_public.sql`, **Run**
+   (page visiteurs sans connexion)
+5. (Optionnel) Faites de même avec `supabase/seed.sql` pour avoir des chants/activités de démonstration
 
 ### 2. Renseigner les clés Supabase
 
@@ -114,3 +120,13 @@ Le répertoire (page `repertoire.html`) est organisé en 4 onglets :
 Toute la gestion (ajout, modification, suppression de chants/partitions/musiques/photos) se fait dans l'espace **Administration**, réservé aux administrateur·rice·s.
 
 **Limite à connaître** : le code d'accès empêche un visiteur normal de voir le lien de téléchargement d'une partition protégée, mais ce n'est pas un chiffrement du fichier lui-même — une fois le lien obtenu (après avoir entré le bon code), rien n'empêche techniquement de le repartager. C'est un frein raisonnable pour un usage entre membres de confiance, pas une protection absolue.
+
+### Page visiteurs (sans connexion)
+
+La page `visiteurs.html` (lien "Visiteurs" dans le menu) est accessible sans créer de compte. Elle affiche :
+
+- Un texte de présentation et les coordonnées de contact (modifiables dans `admin/infos.html`)
+- Toutes les photos, toutes les musiques et toutes les partitions **non protégées**
+- Les partitions protégées apparaissent aussi dans la liste, mais restent verrouillées derrière le code d'accès, même pour un visiteur
+
+Le reste du site (chants classés par partie de messe, choristes, activités, prestations, bureau) reste réservé aux membres connectés.
