@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chorale Saint Patrick — Paroisse Saint-Cyprien</title>
+  <meta
+    name="description"
+    content="Application de gestion de la Chorale Saint Patrick, Paroisse Saint-Cyprien, Archidiocèse de Conakry."
+  />
+  <link rel="icon" href="/public/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header id="entete" class="entete"></header>
+
+  <main class="page">
+    <section class="section">
+      <h1 class="accueil-titre">Chorale Saint Patrick</h1>
+      <p class="accueil-sous-titre">
+        Paroisse Saint-Cyprien — Archidiocèse de Conakry
+      </p>
+    </section>
+
+    <section class="section grille-stats">
+      <div class="carte">
+        <p class="stat-libelle">Choristes actifs</p>
+        <p class="stat-valeur" id="stat-choristes">…</p>
+      </div>
+      <div class="carte">
+        <p class="stat-libelle">Chants au répertoire</p>
+        <p class="stat-valeur" id="stat-chants">…</p>
+      </div>
+      <div class="carte">
+        <p class="stat-libelle">Prestations à venir</p>
+        <p class="stat-valeur" id="stat-prestations">…</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Prochaines prestations</h2>
+      <ul class="liste-serree" id="liste-prochaines-prestations"></ul>
+      <a href="/prestations.html" class="lien-suite">Voir toutes les prestations →</a>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/page-accueil.js"></script>
+</body>
+</html>
