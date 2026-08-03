@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Administration — Chants</title>
+  <link rel="icon" href="/public/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="mise-en-page">
+    <aside id="entete" class="barre-laterale"></aside>
+
+    <main class="page">
+      <h1 class="page-title">Gestion des chants</h1>
+
+      <section class="section">
+        <h2 class="section-title" id="titre-formulaire">Ajouter un chant</h2>
+        <form id="formulaire-chant" class="formulaire formulaire-large">
+          <input type="hidden" id="chant-id" />
+          <div>
+            <label for="chant-titre" class="champ">Titre</label>
+            <input id="chant-titre" type="text" required class="saisie" />
+          </div>
+          <div>
+            <label for="chant-compositeur" class="champ">Compositeur</label>
+            <input id="chant-compositeur" type="text" class="saisie" />
+          </div>
+          <div>
+            <label for="chant-partie" class="champ">Partie de la messe</label>
+            <select id="chant-partie" class="saisie">
+              <option value="">—</option>
+              <option value="ENTREE">Entrée</option>
+              <option value="KYRIE">Kyrie</option>
+              <option value="GLOIRE">Gloire à Dieu</option>
+              <option value="PSAUME">Psaume</option>
+              <option value="ACCLAMATION">Acclamation (Alléluia)</option>
+              <option value="OFFERTOIRE">Offertoire</option>
+              <option value="SANCTUS">Sanctus</option>
+              <option value="AGNEAU">Agneau de Dieu</option>
+              <option value="COMMUNION">Communion</option>
+              <option value="SORTIE">Sortie</option>
+              <option value="AUTRE">Autre</option>
+            </select>
+          </div>
+          <div>
+            <label for="chant-pupitre" class="champ">Pupitre concerné</label>
+            <select id="chant-pupitre" class="saisie">
+              <option value="">—</option>
+              <option value="SOPRANO">Soprano</option>
+              <option value="ALTO">Alto</option>
+              <option value="TENOR">Ténor</option>
+              <option value="BASSE">Basse</option>
+            </select>
+          </div>
+          <div>
+            <label for="chant-paroles" class="champ">Paroles</label>
+            <textarea id="chant-paroles" rows="4" class="saisie"></textarea>
+          </div>
+          <p id="message-erreur" class="erreur" hidden></p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button type="submit" id="bouton-enregistrer" class="bouton">Ajouter</button>
+            <button type="button" id="bouton-annuler" class="bouton-secondaire" hidden>Annuler la modification</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Chants existants</h2>
+        <table class="tableau">
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Partie</th>
+              <th>Pupitre</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="corps-tableau-chants"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/admin-chants.js"></script>
+</body>
+</html>

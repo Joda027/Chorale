@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Administration — Partitions</title>
+  <link rel="icon" href="/public/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="mise-en-page">
+    <aside id="entete" class="barre-laterale"></aside>
+
+    <main class="page">
+      <h1 class="page-title">Gestion des partitions</h1>
+
+      <section class="section">
+        <h2 class="section-title">Ajouter une partition</h2>
+        <form id="formulaire-partition" class="formulaire formulaire-large">
+          <div>
+            <label for="partition-titre" class="champ">Titre</label>
+            <input id="partition-titre" type="text" required class="saisie" />
+          </div>
+          <div>
+            <label for="partition-chant" class="champ">Chant associé (optionnel)</label>
+            <select id="partition-chant" class="saisie">
+              <option value="">—</option>
+            </select>
+          </div>
+          <div>
+            <label for="partition-fichier" class="champ">Fichier (PDF, image...)</label>
+            <input id="partition-fichier" type="file" required class="saisie" />
+          </div>
+          <label class="case-a-cocher">
+            <input type="checkbox" id="partition-protegee" />
+            Protéger par un code d'accès (généré automatiquement)
+          </label>
+          <p id="message-erreur" class="erreur" hidden></p>
+          <button type="submit" id="bouton-ajouter" class="bouton">Ajouter</button>
+        </form>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Partitions existantes</h2>
+        <table class="tableau">
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Protection</th>
+              <th>Code</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="corps-tableau-partitions"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/admin-partitions.js"></script>
+</body>
+</html>

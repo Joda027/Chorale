@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Administration — Photos</title>
+  <link rel="icon" href="/public/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="mise-en-page">
+    <aside id="entete" class="barre-laterale"></aside>
+
+    <main class="page">
+      <h1 class="page-title">Photos de la chorale</h1>
+      <p class="etat-vide" style="margin-bottom: 1.5rem;">
+        Ces photos défilent en carrousel sur la page d'accueil.
+      </p>
+
+      <section class="section">
+        <h2 class="section-title">Ajouter une photo</h2>
+        <form id="formulaire-photo" class="formulaire formulaire-large">
+          <div>
+            <label for="photo-fichier" class="champ">Image</label>
+            <input id="photo-fichier" type="file" accept="image/*" required class="saisie" />
+          </div>
+          <div>
+            <label for="photo-legende" class="champ">Légende (optionnel)</label>
+            <input id="photo-legende" type="text" class="saisie" />
+          </div>
+          <div>
+            <label for="photo-ordre" class="champ">Ordre d'affichage</label>
+            <input id="photo-ordre" type="number" value="0" class="saisie" />
+          </div>
+          <p id="message-erreur" class="erreur" hidden></p>
+          <button type="submit" id="bouton-ajouter" class="bouton">Ajouter</button>
+        </form>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Photos existantes</h2>
+        <div class="grille-photos-admin" id="grille-photos"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/admin-photos.js"></script>
+</body>
+</html>

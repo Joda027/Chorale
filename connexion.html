@@ -8,28 +8,30 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <header id="entete" class="entete"></header>
+  <div class="mise-en-page">
+    <aside id="entete" class="barre-laterale"></aside>
 
-  <main class="page">
-    <h1 class="page-title">Connexion</h1>
+    <main class="page">
+      <h1 class="page-title">Connexion</h1>
 
-    <form id="formulaire-connexion" class="formulaire">
-      <div>
-        <label for="email" class="champ">Email</label>
-        <input id="email" type="email" required class="saisie" />
-      </div>
-      <div>
-        <label for="mot-de-passe" class="champ">Mot de passe</label>
-        <input id="mot-de-passe" type="password" required class="saisie" />
-      </div>
-      <p id="message-erreur" class="erreur" hidden></p>
-      <button type="submit" id="bouton-connexion" class="bouton">Se connecter</button>
-    </form>
+      <form id="formulaire-connexion" class="formulaire">
+        <div>
+          <label for="email" class="champ">Email</label>
+          <input id="email" type="email" required class="saisie" />
+        </div>
+        <div>
+          <label for="mot-de-passe" class="champ">Mot de passe</label>
+          <input id="mot-de-passe" type="password" required class="saisie" />
+        </div>
+        <p id="message-erreur" class="erreur" hidden></p>
+        <button type="submit" id="bouton-connexion" class="bouton">Se connecter</button>
+      </form>
 
-    <p class="lien-secondaire">
-      Pas encore de compte ? <a href="/inscription.html">Créer un compte</a>
-    </p>
-  </main>
+      <p class="lien-secondaire">
+        Pas encore de compte ? <a href="/inscription.html">Créer un compte</a>
+      </p>
+    </main>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="/js/config.js"></script>

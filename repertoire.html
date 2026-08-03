@@ -8,12 +8,36 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <header id="entete" class="entete"></header>
+  <div class="mise-en-page">
+    <aside id="entete" class="barre-laterale"></aside>
 
-  <main class="page">
-    <h1 class="page-title">Répertoire de chants</h1>
-    <ul class="liste" id="liste-chants"></ul>
-  </main>
+    <main class="page">
+      <h1 class="page-title">Répertoire</h1>
+
+      <div class="onglets">
+        <button class="onglet actif" data-onglet="chants" type="button">Chants</button>
+        <button class="onglet" data-onglet="partitions" type="button">Partitions</button>
+        <button class="onglet" data-onglet="musiques" type="button">Musiques</button>
+        <button class="onglet" data-onglet="photos" type="button">Photos</button>
+      </div>
+
+      <div class="onglet-panneau actif" id="panneau-chants">
+        <div id="groupes-chants"></div>
+      </div>
+
+      <div class="onglet-panneau" id="panneau-partitions">
+        <ul class="liste" id="liste-partitions"></ul>
+      </div>
+
+      <div class="onglet-panneau" id="panneau-musiques">
+        <ul class="liste" id="liste-musiques"></ul>
+      </div>
+
+      <div class="onglet-panneau" id="panneau-photos">
+        <div class="grille-photos-admin" id="galerie-photos"></div>
+      </div>
+    </main>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="/js/config.js"></script>

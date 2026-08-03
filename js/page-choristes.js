@@ -18,6 +18,9 @@ const LABELS_ROLE = {
 };
 
 async function chargerChoristes() {
+  const session = await exigerConnexion();
+  if (!session) return;
+
   const conteneur = document.getElementById("groupes-pupitres");
 
   const { data: membres, error } = await supabaseClient
