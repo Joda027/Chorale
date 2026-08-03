@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { auth } from "@/auth";
 import { estMembreDuBureau } from "@/lib/rbac";
 import { SignOutButton } from "@/components/SignOutButton";
@@ -22,7 +23,14 @@ export async function Header() {
   return (
     <header className="bg-sky-700 text-white">
       <div className="mx-auto max-w-5xl px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-        <Link href="/" className="font-semibold tracking-tight">
+        <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
+          <Image
+            src="/logo.png"
+            alt="Logo de la Chorale Saint Patrick"
+            width={36}
+            height={36}
+            className="h-9 w-9 rounded-full"
+          />
           Chorale Saint Patrick
         </Link>
         <nav className="flex flex-wrap gap-4 text-sm">
